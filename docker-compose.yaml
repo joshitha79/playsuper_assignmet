@@ -1,26 +1,6 @@
 version: "3.9"
 
 services:
-  backend:
-    build: ./backend
-    container_name: airfare-backend
-    ports:
-      - "5000:5000"
-    env_file:
-      - ./backend/.env
-    depends_on:
-      - db
-
-  frontend:
-    build: ./frontend
-    container_name: airfare-frontend
-    ports:
-      - "3000:3000"
-    environment:
-      NEXT_PUBLIC_API_URL: http://54.206.15.215:5000
-    depends_on:
-      - backend
-
   db:
     image: postgres:15-alpine
     container_name: airfare-db
@@ -32,6 +12,32 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: airfare-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: airfare-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://54.206.15.215:5000
+    depends_on:
+      - backend
 
 volumes:
   db_data:
