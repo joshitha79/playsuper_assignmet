@@ -18,6 +18,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:3000',
+      'http://54.206.15.215:5000',
       'https://airfare-route-finder-frontend.vercel.app',
     ],
     credentials: true,
