@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: airfare-backend
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://neondb_owner:npg_n5X4eWVJybqI@ep-wandering-waterfall-a112knmz-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: airfare-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:5000
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:15-alpine
+    container_name: airfare-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: airfare
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

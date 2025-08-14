@@ -64,7 +64,7 @@ const FindConnection: React.FC<FindConnectionProps> = ({
     try {
       const apiUrl =
         process.env.NEXT_PUBLIC_BACKEND_API +
-        `/user-search/search?fromCity=${fromCity}&toCity=${toCity}&fliterBy=${filterBy}`;
+        `/user-search/search?fromCity=${fromCity}&toCity=${toCity}&filterBy=${filterBy}`;
       const response = await fetch(apiUrl);
       if (!response.ok)
         throw new Error(
