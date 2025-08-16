@@ -19,7 +19,7 @@ const ContactUs = () => {
 
         <div className="flex justify-center items-center gap-3 text-lg mb-8">
           <MapPin className="text-blue-400" />
-          <span>Hyderabad, Telangana, India</span>
+          <span>NIAT Hyderabad, Telangana, India</span>
         </div>
 
         <div className="flex justify-center gap-6 mb-12">
