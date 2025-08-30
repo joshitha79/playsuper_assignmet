@@ -18,11 +18,11 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:3000',
-      'http://54.206.15.215:3000',
+      'http://3.26.60.223:3000',
       'https://airfare-route-finder-frontend.vercel.app',
     ],
     credentials: true,
   });
-  await app.listen(process.env.PORT ?? '0.0.0.0');
+  await app.listen(process.env.PORT || 5000, '0.0.0.0');
 }
 bootstrap();
