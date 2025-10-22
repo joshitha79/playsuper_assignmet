@@ -64,7 +64,7 @@ const LoginPage: React.FC = () => {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-500/20 border-2 border-blue-500/50 rounded-full mb-4">
             <ShieldCheck className="w-8 h-8 text-blue-400" />
           </div>
-          <h1 className="text-3xl font-bold text-white">Admin Login</h1>
+          <h1 className="text-3xl font-bold text-white">Admin Loginpage</h1>
           <p className="text-slate-400 mt-2">
             Sign in to manage your dashboard.
           </p>
